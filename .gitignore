@@ -1,0 +1,12 @@
+/target
+**/*.rs.bk
+Cargo.lock
+*.swp
+*.swo
+*~
+.DS_Store
+.idea/
+.vscode/
+
+# Original TypeScript source (not part of this repo)
+/chrome-devtools-mcp/

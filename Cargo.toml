@@ -1,0 +1,64 @@
+[workspace]
+members = ["crates/*"]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+license = "CC-BY-NC-4.0"
+repository = "https://github.com/janfeddersen-wq/rust-chrome-mcp"
+
+[workspace.dependencies]
+# Async runtime
+tokio = { version = "1", features = ["full"] }
+
+# Serialization
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+# Error handling
+anyhow = "1"
+thiserror = "2"
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+
+# CLI
+clap = { version = "4", features = ["derive"] }
+
+# HTTP client (for CrUX API)
+reqwest = { version = "0.12", default-features = false, features = ["rustls-tls", "json"] }
+
+# WebSocket
+tokio-tungstenite = { version = "0.28", features = ["rustls-tls-webpki-roots"] }
+futures-util = "0.3"
+
+# URL parsing
+url = "2"
+
+# Base64 encoding (screenshots)
+base64 = "0.22"
+
+# Temp files
+tempfile = "3"
+
+# Find executables
+which = "7"
+
+# Compression (trace files)
+flate2 = "1"
+
+# Platform directories
+dirs = "6"
+
+# Workspace crates
+cdp-client = { path = "crates/cdp-client" }
+mcp-tools = { path = "crates/mcp-tools" }
+trace-engine = { path = "crates/trace-engine" }
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true

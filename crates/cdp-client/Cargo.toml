@@ -1,0 +1,21 @@
+[package]
+name = "cdp-client"
+description = "Chrome DevTools Protocol client over WebSocket"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+tokio = { workspace = true }
+tokio-tungstenite = { workspace = true }
+futures-util = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+anyhow = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+url = { workspace = true }
+base64 = { workspace = true }
+tempfile = { workspace = true }
+which = { workspace = true }
+reqwest = { workspace = true }
