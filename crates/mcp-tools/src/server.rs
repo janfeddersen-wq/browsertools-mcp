@@ -1497,9 +1497,8 @@ impl ServerHandler for BrowserToolsServer {
         let capabilities = ServerCapabilities::builder().enable_tools().build();
         let mut info = ServerInfo::default();
         info.capabilities = capabilities;
-        info.instructions = Some(
-            "BrowserTools MCP Server — control and inspect Chrome from AI assistants.".into(),
-        );
+        info.instructions =
+            Some("BrowserTools MCP Server — control and inspect Chrome from AI assistants.".into());
         info
     }
 }
