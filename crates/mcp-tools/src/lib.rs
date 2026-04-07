@@ -1,6 +1,6 @@
 //! # mcp-tools
 //!
-//! MCP tool definitions and handlers for Chrome DevTools.
+//! MCP tool definitions and handlers for BrowserTools.
 //!
 //! Provides the McpContext (central state), tool definitions for all 29 tools,
 //! response builders, event collectors, and output formatters.
@@ -19,5 +19,5 @@ pub mod wait_for;
 pub use context::{McpContext, SharedContext};
 pub use page_state::McpPageState;
 pub use response::McpResponse;
-pub use server::ChromeDevToolsServer;
+pub use server::BrowserToolsServer;
 pub use slim_server::SlimServer;

@@ -1,4 +1,4 @@
-//! Chrome DevTools MCP server — binary entry point.
+//! BrowserTools MCP server — binary entry point.
 //!
 //! Parses CLI args, launches/connects to Chrome, starts the MCP server
 //! on stdio transport, and handles graceful shutdown.
@@ -47,7 +47,7 @@ async fn main() -> anyhow::Result<()> {
     // Print disclaimers to stderr.
     print_disclaimers(&config);
 
-    tracing::info!(version = VERSION, "Starting Chrome DevTools MCP server");
+    tracing::info!(version = VERSION, "Starting BrowserTools MCP server");
 
     // Launch or connect to Chrome.
     let browser =
@@ -106,7 +106,7 @@ async fn main() -> anyhow::Result<()> {
         tracing::info!("MCP server running on stdio (slim mode)");
         running.waiting().await?;
     } else {
-        let server = mcp_tools::ChromeDevToolsServer::new(shared_context);
+        let server = mcp_tools::BrowserToolsServer::new(shared_context);
         let running = server.serve(transport).await.inspect_err(|e| {
             tracing::error!(error = %e, "MCP server initialization failed");
         })?;
@@ -114,13 +114,13 @@ async fn main() -> anyhow::Result<()> {
         running.waiting().await?;
     }
 
-    tracing::info!("Chrome DevTools MCP server shutting down");
+    tracing::info!("BrowserTools MCP server shutting down");
     Ok(())
 }
 
 fn print_disclaimers(config: &Config) {
     eprintln!(
-        "chrome-devtools-mcp v{VERSION} exposes browser content to MCP clients.\n\
+        "browsertools-mcp v{VERSION} exposes browser content to MCP clients.\n\
          Avoid sharing sensitive information you do not want to share with MCP clients."
     );
 

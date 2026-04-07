@@ -4,4 +4,4 @@
 //!
 //! The slim server implementation lives in `crate::slim_server::SlimServer`.
 //! When `--slim` is passed on the CLI, `SlimServer` is used instead of
-//! `ChromeDevToolsServer`, exposing only 3 tools.
+//! `BrowserToolsServer`, exposing only 3 tools.

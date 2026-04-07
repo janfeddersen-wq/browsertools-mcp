@@ -1,11 +1,11 @@
-//! ChromeDevToolsServer — the MCP server struct with all 29 tool implementations.
+//! BrowserToolsServer — the MCP server struct with all 29 tool implementations.
 
 use std::sync::Arc;
 use std::time::Duration;
 
 use rmcp::handler::server::router::tool::ToolRouter;
 use rmcp::handler::server::wrapper::Parameters;
-use rmcp::model::{CallToolResult, Content, ServerInfo};
+use rmcp::model::{CallToolResult, Content, ServerCapabilities, ServerInfo};
 use rmcp::{ServerHandler, tool, tool_handler, tool_router};
 use schemars::JsonSchema;
 use serde::Deserialize;
@@ -317,14 +317,14 @@ pub struct HandleDialogParams {
 // Server struct
 // ---------------------------------------------------------------------------
 
-/// The Chrome DevTools MCP server.
+/// The BrowserTools MCP server.
 #[derive(Clone)]
-pub struct ChromeDevToolsServer {
+pub struct BrowserToolsServer {
     ctx: SharedContext,
     tool_router: ToolRouter<Self>,
 }
 
-impl ChromeDevToolsServer {
+impl BrowserToolsServer {
     /// Create a new server with the given shared context.
     pub fn new(ctx: SharedContext) -> Self {
         Self {
@@ -359,7 +359,7 @@ fn resolve_uid(ctx: &McpContext, uid: &str) -> Result<i64, String> {
 // ---------------------------------------------------------------------------
 
 #[tool_router]
-impl ChromeDevToolsServer {
+impl BrowserToolsServer {
     // =======================================================================
     // PAGE TOOLS (6)
     // =======================================================================
@@ -1492,11 +1492,13 @@ impl ChromeDevToolsServer {
 // ---------------------------------------------------------------------------
 
 #[tool_handler]
-impl ServerHandler for ChromeDevToolsServer {
+impl ServerHandler for BrowserToolsServer {
     fn get_info(&self) -> ServerInfo {
+        let capabilities = ServerCapabilities::builder().enable_tools().build();
         let mut info = ServerInfo::default();
+        info.capabilities = capabilities;
         info.instructions = Some(
-            "Chrome DevTools MCP Server — control and inspect Chrome from AI assistants.".into(),
+            "BrowserTools MCP Server — control and inspect Chrome from AI assistants.".into(),
         );
         info
     }

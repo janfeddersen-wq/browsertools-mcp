@@ -1,12 +1,12 @@
 [package]
-name = "chrome-devtools-mcp"
-description = "Chrome DevTools MCP server - control and inspect Chrome from AI assistants"
+name = "browsertools-mcp"
+description = "BrowserTools MCP server - control and inspect Chrome from AI assistants"
 version.workspace = true
 edition.workspace = true
 license.workspace = true
 
 [[bin]]
-name = "chrome-devtools-mcp"
+name = "browsertools-mcp"
 path = "src/main.rs"
 
 [dependencies]

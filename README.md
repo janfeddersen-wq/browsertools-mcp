@@ -1,13 +1,13 @@
-# rust-chrome-mcp
+# BrowserTools MCP
 
-A Chrome DevTools MCP server written in Rust. Single binary, no Node.js required.
+A browser automation MCP server written in Rust. Single binary, no Node.js required.
 
 Control and inspect Chrome browsers from AI assistants (Claude Code, Cursor, etc.) via the [Model Context Protocol](https://modelcontextprotocol.io/).
 
 ## Features
 
 - **35 MCP tools** for browser automation, debugging, and performance analysis
-- **Single binary** (5.8MB) — no runtime dependencies
+- **Single binary** (~6MB) — no runtime dependencies
 - **Headless or headed** Chrome control
 - Accessibility tree snapshots with stable element UIDs
 - Screenshots (PNG/JPEG/WebP)
@@ -27,13 +27,13 @@ Control and inspect Chrome browsers from AI assistants (Claude Code, Cursor, etc
 cargo build --release
 
 # Run with headless Chrome
-./target/release/chrome-devtools-mcp --headless
+./target/release/browsertools-mcp --headless
 
 # Connect to an existing Chrome instance
-./target/release/chrome-devtools-mcp --ws-endpoint ws://localhost:9222/devtools/browser/...
+./target/release/browsertools-mcp --ws-endpoint ws://localhost:9222/devtools/browser/...
 
 # Slim mode (3 tools only)
-./target/release/chrome-devtools-mcp --headless --slim
+./target/release/browsertools-mcp --headless --slim
 ```
 
 ## MCP Client Configuration
@@ -41,8 +41,8 @@ cargo build --release
 ```json
 {
   "mcpServers": {
-    "chrome-devtools": {
-      "command": "/path/to/chrome-devtools-mcp",
+    "browsertools": {
+      "command": "/path/to/browsertools-mcp",
       "args": ["--headless", "--isolated"]
     }
   }

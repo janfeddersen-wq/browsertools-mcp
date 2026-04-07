@@ -66,15 +66,15 @@ jobs:
         shell: bash
         run: |
           if [ "${{ matrix.os }}" = "windows-latest" ]; then
-            ls -la target/${{ matrix.target }}/release/chrome-devtools-mcp.exe
+            ls -la target/${{ matrix.target }}/release/browsertools-mcp.exe
           else
-            ls -la target/${{ matrix.target }}/release/chrome-devtools-mcp
+            ls -la target/${{ matrix.target }}/release/browsertools-mcp
           fi
 
       - name: Upload binary
         uses: actions/upload-artifact@v4
         with:
-          name: chrome-devtools-mcp-${{ matrix.target }}
+          name: browsertools-mcp-${{ matrix.target }}
           path: |
-            target/${{ matrix.target }}/release/chrome-devtools-mcp
-            target/${{ matrix.target }}/release/chrome-devtools-mcp.exe
+            target/${{ matrix.target }}/release/browsertools-mcp
+            target/${{ matrix.target }}/release/browsertools-mcp.exe

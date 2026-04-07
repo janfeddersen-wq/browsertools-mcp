@@ -4,9 +4,9 @@ use std::path::PathBuf;
 
 use clap::Parser;
 
-/// Chrome DevTools MCP server — control and inspect Chrome from AI assistants.
+/// BrowserTools MCP server — control and inspect Chrome from AI assistants.
 #[derive(Parser, Debug, Clone)]
-#[command(name = "chrome-devtools-mcp", version, about)]
+#[command(name = "browsertools-mcp", version, about)]
 pub struct Config {
     // === Browser Launch Options ===
     /// Run Chrome in headless mode.

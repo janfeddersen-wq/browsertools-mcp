@@ -7,7 +7,7 @@ use std::sync::Arc;
 
 use rmcp::handler::server::router::tool::ToolRouter;
 use rmcp::handler::server::wrapper::Parameters;
-use rmcp::model::{CallToolResult, Content, ServerInfo};
+use rmcp::model::{CallToolResult, Content, ServerCapabilities, ServerInfo};
 use rmcp::{ServerHandler, tool, tool_handler, tool_router};
 use schemars::JsonSchema;
 use serde::Deserialize;
@@ -49,7 +49,7 @@ fn default_format() -> String {
 // Slim server struct
 // ---------------------------------------------------------------------------
 
-/// The slim Chrome DevTools MCP server (3 tools only).
+/// The slim BrowserTools MCP server (3 tools only).
 #[derive(Clone)]
 pub struct SlimServer {
     ctx: SharedContext,
@@ -165,9 +165,11 @@ impl SlimServer {
 #[tool_handler]
 impl ServerHandler for SlimServer {
     fn get_info(&self) -> ServerInfo {
+        let capabilities = ServerCapabilities::builder().enable_tools().build();
         let mut info = ServerInfo::default();
+        info.capabilities = capabilities;
         info.instructions = Some(
-            "Chrome DevTools MCP Server (slim mode) -- navigate, evaluate, and screenshot.".into(),
+            "BrowserTools MCP Server (slim mode) -- navigate, evaluate, and screenshot.".into(),
         );
         info
     }

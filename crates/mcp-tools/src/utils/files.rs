@@ -6,7 +6,7 @@ use anyhow::Result;
 
 /// Save data to a temporary file and return its path.
 pub async fn save_temporary_file(data: &[u8], filename: &str) -> Result<PathBuf> {
-    let dir = std::env::temp_dir().join("chrome-devtools-mcp");
+    let dir = std::env::temp_dir().join("browsertools-mcp");
     tokio::fs::create_dir_all(&dir).await?;
 
     let path = dir.join(filename);
